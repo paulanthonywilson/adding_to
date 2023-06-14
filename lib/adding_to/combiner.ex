@@ -15,6 +15,13 @@ defmodule AddingTo.Combiner do
     |> do_pairs()
   end
 
+  @doc """
+  All combinations of contiguous numbers in the range as a list of integer lists
+  eg
+  iex> AddingTo.Combiner.all_combinations(1..3)
+  [[[1, 2], [3]], [[1], [2, 3]], [[1], [2], [3]]]
+  """
+  @spec all_combinations(Range.t()) :: list(list(integer()))
   def all_combinations(range = %Range{}) do
     range
     |> Enum.to_list()
@@ -65,6 +72,13 @@ defmodule AddingTo.Combiner do
   defp last_lhs([]), do: []
   defp last_lhs([[lhs | _] | _]), do: lhs
 
+  @doc """
+  All combinations of contiguous numbers in the range as a list of integers
+  eg
+  iex> AddingTo.Combiner.all_number_combinations(1..3)
+  [[12, 3], [1, 23], [1, 2, 3]]
+  """
+  @spec all_number_combinations(Range.t()) :: list(integer())
   def all_number_combinations(range = %Range{}) do
     range
     |> all_combinations()
